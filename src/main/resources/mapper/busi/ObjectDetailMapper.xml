@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moulh.pg.busi.mapper.ObjectDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moulh.pg.busi.entity.ObjectDetail">
+        <id column="object_id" property="objectId" />
+        <result column="object_desc" property="objectDesc" />
+        <result column="price_of_person" property="priceOfPerson" />
+        <result column="num_of_likes" property="numOfLikes" />
+        <result column="num_of_visitors" property="numOfVisitors" />
+        <result column="per_of_heat" property="perOfHeat" />
+        <result column="per_of_good" property="perOfGood" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moulh.pg.busi.mapper.ObjectFlowMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moulh.pg.busi.entity.ObjectFlow">
+        <id column="object_id" property="objectId" />
+        <result column="date" property="date" />
+        <result column="visit_num" property="visitNum" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="queryObjectFlowTotalMsg" resultType="com.moulh.pg.busi.vo.ObjectFlowVo">
+        select t1.object_id, sum(t1.visit_num) as visit_total_num, t2.object_name
+        from t_b_object_flow t1
+        left join t_b_object t2 on t1.object_id = t2.id
+        <where>
+            <if test="searchMap.objectType != null and searchMap.objectType != ''">
+                and t2.object_type =#{searchMap.objectType}
+            </if>
+            <if test="searchMap.dateTimeStart != null and searchMap.dateTimeStart != ''">
+                and t1.date >= #{searchMap.dateTimeStart}
+            </if>
+            <if test="searchMap.dateTimeEnd != null and searchMap.dateTimeEnd != ''">
+                and t1.date &lt;= #{searchMap.dateTimeEnd}
+            </if>
+            <if test="searchMap.objectName != null and searchMap.objectName != ''">
+                and t2.object_name =#{searchMap.objectName}
+            </if>
+        </where>
+        group by object_id order by visit_total_num desc
+    </select>
+
+    <select id="queryObjectFlowMsg" resultType="com.moulh.pg.busi.vo.ObjectFlowDateMsgVo">
+        select
+        if(dayofweek(t1.date)>1,dayofweek(t1.date)-1,7) as weekNum,
+        t1.date, t1.visit_num
+        from t_b_object_flow t1
+        <where>
+            <if test="searchMap.objectId != null and searchMap.objectId != ''">
+                and t1.object_id =#{searchMap.objectId}
+            </if>
+            <if test="searchMap.dateTimeStart != null and searchMap.dateTimeStart != ''">
+                and t1.date >= #{searchMap.dateTimeStart}
+            </if>
+            <if test="searchMap.dateTimeEnd != null and searchMap.dateTimeEnd != ''">
+                and t1.date &lt;= #{searchMap.dateTimeEnd}
+            </if>
+        </where>
+        order by t1.date
+    </select>
+
+    <update id="updateObjectFlow">
+        update t_b_object_flow set visit_num = visit_num + 1 where object_id = #{objectId} and `date` = #{date}
+    </update>
+
+</mapper>

@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/appdb?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai&allowMutiQueries=true
+    username: appdbo
+    password: appdbop
+  redis:
+    host: 123.56.8.50
+    port: 6379
+    timeout: 5000ms
+    database: 0
+  main:
+    allow-bean-definition-overriding: true # 这个表示允许我们覆盖OAuth2放在容器中的bean对象，一定要配置
+
+security:
+  #不需要认证的地址
+  permit-all:
+    urls:
+      - /webjars/**
+      - /swagger*/**
+      - /doc.html
+      - /v2/**
+      - /oauth/**
+      - /user/login
+      - /user/logout
+      - /user/userMsgs
+      - /user/refreshToken
+      - /login
+
+oss:
+  access-id: LTAI5tErWMRhQyUSSHRfw1FB
+  access-key: jmw5X4Pq0zmjonRNyQOKIaHUjlTIWB
+  bucket-name: fs-app-storage
+  out-endpoint: oss-cn-beijing.aliyuncs.com
+  download-url: http://oss.hxsyfsjz.com/

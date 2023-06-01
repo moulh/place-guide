@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moulh.pg.busi.mapper.ObjectMapper">
+
+    <!-- 景点查询映射结果 -->
+    <resultMap id="SpotListResultMap" type="com.moulh.pg.busi.vo.SpotObjectListVo">
+        <id column="id" property="id" />
+        <result column="area_name" property="areaName" />
+        <result column="object_name" property="objectName" />
+        <result column="object_short_desc" property="objectShortDesc" />
+        <result column="object_main_image_url" property="objectMainImageUrl" />
+        <result column="lat" property="lat" />
+        <result column="lng" property="lng" />
+        <result column="distance" property="distance"/>
+        <result column="price_of_person" property="priceOfPerson" />
+        <result column="per_of_heat" property="perOfHeat" />
+        <result column="per_of_good" property="perOfGood" />
+        <result column="comment_count" property="commentCount" />
+        <collection property="tagsVoList" ofType="com.moulh.pg.busi.vo.TagsVo"
+                    select="com.moulh.pg.busi.mapper.ObjectMapper.queryObjectTagsMsg" column="id"/>
+    </resultMap>
+
+    <!-- 住宿查询映射结果 -->
+    <resultMap id="AccListResultMap" type="com.moulh.pg.busi.vo.SpotObjectListVo">
+        <id column="id" property="id" />
+        <result column="area_name" property="areaName" />
+        <result column="object_name" property="objectName" />
+        <result column="object_short_desc" property="objectShortDesc" />
+        <result column="object_main_image_url" property="objectMainImageUrl" />
+        <result column="lat" property="lat" />
+        <result column="lng" property="lng" />
+        <result column="distance" property="distance"/>
+        <result column="price_of_person" property="priceOfPerson" />
+        <result column="per_of_heat" property="perOfHeat" />
+        <result column="per_of_good" property="perOfGood" />
+        <result column="comment_count" property="commentCount" />
+        <collection property="tagsVoList" ofType="com.moulh.pg.busi.vo.TagsVo"
+                    select="com.moulh.pg.busi.mapper.ObjectMapper.queryObjectTagsMsg" column="id"/>
+    </resultMap>
+
+    <!-- 餐饮查询映射结果 -->
+    <resultMap id="RestListResultMap" type="com.moulh.pg.busi.vo.SpotObjectListVo">
+        <id column="id" property="id" />
+        <result column="area_name" property="areaName" />
+        <result column="object_name" property="objectName" />
+        <result column="object_short_desc" property="objectShortDesc" />
+        <result column="object_main_image_url" property="objectMainImageUrl" />
+        <result column="lat" property="lat" />
+        <result column="lng" property="lng" />
+        <result column="distance" property="distance"/>
+        <result column="price_of_person" property="priceOfPerson" />
+        <result column="per_of_heat" property="perOfHeat" />
+        <result column="per_of_good" property="perOfGood" />
+        <result column="comment_count" property="commentCount" />
+        <collection property="tagsVoList" ofType="com.moulh.pg.busi.vo.TagsVo"
+                    select="com.moulh.pg.busi.mapper.ObjectMapper.queryObjectTagsMsg" column="id"/>
+    </resultMap>
+
+    <!-- 餐饮查询映射结果 -->
+    <resultMap id="ObjectListResultMap" type="com.moulh.pg.busi.vo.ObjectListVo">
+        <id column="id" property="id" />
+        <result column="area_name" property="areaName" />
+        <result column="object_name" property="objectName" />
+        <result column="lat" property="lat" />
+        <result column="lng" property="lng" />
+        <result column="area_name" property="areaName"/>
+        <result column="tel" property="tel" />
+    </resultMap>
+
+    <select id="queryObjectTagsMsg" resultType="com.moulh.pg.busi.vo.TagsVo" parameterType="integer">
+        select id, tags_content, tags_count from t_bi_tags where object_id = #{objectId} LIMIT 8
+    </select>
+
+    <select id="querySpotList" resultMap="SpotListResultMap">
+        select * from (
+        SELECT
+        t1.id,
+        t1.object_type,
+        t1.object_name,
+        t1.object_short_desc,
+        t1.lat,
+        t1.lng,
+        t1.area_code,
+        t1.create_time,
+        ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{searchMap.lat}*PI()/180-lat*PI()/180)/2),2)+COS(#{searchMap.lat}*PI()/180)*COS(lat*PI()/180)*POW(SIN((#{searchMap.lng}*PI()/180-lng*PI()/180)/2),2)))*1000) AS distance,
+        t3.price_of_person,
+        t3.per_of_heat,
+        t3.per_of_good,
+        t3.num_of_visitors,
+        t2.url AS object_main_image_url,
+        t4.comment_count,
+        t5.area_name,
+        t6.tags_list
+        FROM
+        t_b_object t1
+        LEFT JOIN t_bi_images t2 ON t1.object_main_imageid = t2.id
+        LEFT JOIN t_b_object_detail t3 ON t1.id = t3.object_id
+        LEFT JOIN (select count(1) as comment_count, object_id from t_b_comment GROUP BY object_id) t4 on t1.id = t4.object_id
+        LEFT JOIN t_bi_area t5 on t1.area_code = t5.area_code
+        left join (select object_id, group_concat(id) as tags_list from t_bi_tags group by object_id) t6 on t1.id = t6.object_id) as t
+        <where>
+            <if test="searchMap.objectType != null and searchMap.objectType != ''">
+                and t.object_type =#{searchMap.objectType}
+            </if>
+            <if test="searchMap.areaCode != null and searchMap.areaCode != ''">
+                and t.area_code =#{searchMap.areaCode}
+            </if>
+            <if test="searchMap.distance != null and searchMap.distance != ''">
+                and t.distance &lt;= #{searchMap.distance}
+            </if>
+            <if test="searchMap.tagIds != null and searchMap.tagIds.size() > 0">
+                <foreach collection="searchMap.tagIds" item="item" index="index" open=" and(" close=")" separator=" or ">
+                    FIND_IN_SET(#{item},t.tags_list)
+                </foreach>
+            </if>
+        </where>
+        ORDER BY
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '1'">
+            t.per_of_good desc,
+        </if>
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '2'">
+            t.num_of_visitors desc,
+        </if>
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '3'">
+            t.per_of_heat desc,
+        </if>
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '4'">
+            t.distance desc,
+        </if>
+        t.create_time DESC
+    </select>
+
+    <select id="queryAccList" resultMap="AccListResultMap">
+        select * from (
+        SELECT
+        t1.id,
+        t1.object_type,
+        t1.object_name,
+        t1.object_short_desc,
+        t1.lat,
+        t1.lng,
+        t1.area_code,
+        t1.create_time,
+        ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{searchMap.lat}*PI()/180-lat*PI()/180)/2),2)+COS(#{searchMap.lat}*PI()/180)*COS(lat*PI()/180)*POW(SIN((#{searchMap.lng}*PI()/180-lng*PI()/180)/2),2)))*1000) AS distance,
+        t3.price_of_person,
+        t3.per_of_heat,
+        t3.per_of_good,
+        t3.num_of_visitors,
+        t2.url AS object_main_image_url,
+        t4.comment_count,
+        t5.area_name,
+        t6.tags_list
+        FROM
+        t_b_object t1
+        LEFT JOIN t_bi_images t2 ON t1.object_main_imageid = t2.id
+        LEFT JOIN t_b_object_detail t3 ON t1.id = t3.object_id
+        LEFT JOIN (select count(1) as comment_count, object_id from t_b_comment GROUP BY object_id) t4 on t1.id = t4.object_id
+        LEFT JOIN t_bi_area t5 on t1.area_code = t5.area_code
+        left join (select object_id, group_concat(id) as tags_list from t_bi_tags group by object_id) t6 on t1.id = t6.object_id) as t
+        <where>
+            <if test="searchMap.objectType != null and searchMap.objectType != ''">
+                and t.object_type =#{searchMap.objectType}
+            </if>
+            <if test="searchMap.areaCode != null and searchMap.areaCode != ''">
+                and t.area_code =#{searchMap.areaCode}
+            </if>
+            <if test="searchMap.distance != null and searchMap.distance != ''">
+                and t.distance &lt;= #{searchMap.distance}
+            </if>
+            <if test="searchMap.tagIds != null and searchMap.tagIds.size() > 0">
+                <foreach collection="searchMap.tagIds" item="item" index="index" open=" and(" close=")" separator=" or ">
+                    FIND_IN_SET(#{item},t.tags_list)
+                </foreach>
+            </if>
+        </where>
+        ORDER BY
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '1'">
+            t.per_of_good desc,
+        </if>
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '2'">
+            t.num_of_visitors desc,
+        </if>
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '3'">
+            t.per_of_heat desc,
+        </if>
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '4'">
+            t.distance desc,
+        </if>
+        t.create_time DESC
+    </select>
+
+    <select id="queryRestList" resultMap="RestListResultMap">
+        select * from (
+        SELECT
+        t1.id,
+        t1.object_type,
+        t1.object_name,
+        t1.object_short_desc,
+        t1.lat,
+        t1.lng,
+        t1.area_code,
+        t1.create_time,
+        ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{searchMap.lat}*PI()/180-lat*PI()/180)/2),2)+COS(#{searchMap.lat}*PI()/180)*COS(lat*PI()/180)*POW(SIN((#{searchMap.lng}*PI()/180-lng*PI()/180)/2),2)))*1000) AS distance,
+        t3.price_of_person,
+        t3.per_of_heat,
+        t3.per_of_good,
+        t3.num_of_visitors,
+        t2.url AS object_main_image_url,
+        t4.comment_count,
+        t5.area_name,
+        t6.tags_list
+        FROM
+        t_b_object t1
+        LEFT JOIN t_bi_images t2 ON t1.object_main_imageid = t2.id
+        LEFT JOIN t_b_object_detail t3 ON t1.id = t3.object_id
+        LEFT JOIN (select count(1) as comment_count, object_id from t_b_comment GROUP BY object_id) t4 on t1.id = t4.object_id
+        LEFT JOIN t_bi_area t5 on t1.area_code = t5.area_code
+        left join (select object_id, group_concat(id) as tags_list from t_bi_tags group by object_id) t6 on t1.id = t6.object_id) as t
+        <where>
+            <if test="searchMap.objectType != null and searchMap.objectType != ''">
+                and t.object_type =#{searchMap.objectType}
+            </if>
+            <if test="searchMap.areaCode != null and searchMap.areaCode != ''">
+                and t.area_code =#{searchMap.areaCode}
+            </if>
+            <if test="searchMap.distance != null and searchMap.distance != ''">
+                and t.distance &lt;= #{searchMap.distance}
+            </if>
+            <if test="searchMap.tagIds != null and searchMap.tagIds.size() > 0">
+                <foreach collection="searchMap.tagIds" item="item" index="index" open=" and(" close=")" separator=" or ">
+                    FIND_IN_SET(#{item},t.tags_list)
+                </foreach>
+            </if>
+        </where>
+        ORDER BY
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '1'">
+            t.per_of_good desc,
+        </if>
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '2'">
+            t.num_of_visitors desc,
+        </if>
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '3'">
+            t.per_of_heat desc,
+        </if>
+        <if test="searchMap.flag != null and searchMap.flag != '' and searchMap.flag == '4'">
+            t.distance desc,
+        </if>
+        t.create_time DESC
+    </select>
+
+    <select id="querySpotDetail" resultType="com.moulh.pg.busi.vo.SpotObjectDetailVo">
+        SELECT
+        t1.id,
+        t1.object_name,
+        t1.object_short_desc,
+        t1.lat,
+        t1.lng,
+        t1.tel,
+        t3.per_of_good,
+        t4.comment_count,
+        t1.create_time,
+        t5.area_name
+        FROM
+        t_b_object t1
+        LEFT JOIN t_b_object_detail t3 ON t1.id = t3.object_id
+        LEFT JOIN (select count(1) as comment_count, object_id from t_b_comment GROUP BY object_id) t4 on t1.id = t4.object_id
+        LEFT JOIN t_bi_area t5 on t1.area_code = t5.area_code
+        WHERE
+        t1.id = #{objectId}
+    </select>
+
+    <select id="queryAccDetail" resultType="com.moulh.pg.busi.vo.AccObjectDetailVo">
+        SELECT
+        t1.id,
+        t1.object_name,
+        t1.object_short_desc,
+        t1.lat,
+        t1.lng,
+        t1.tel,
+        t3.per_of_good,
+        t4.comment_count,
+        t1.create_time,
+        t5.area_name
+        FROM
+        t_b_object t1
+        LEFT JOIN t_b_object_detail t3 ON t1.id = t3.object_id
+        LEFT JOIN (select count(1) as comment_count, object_id from t_b_comment GROUP BY object_id) t4 on t1.id = t4.object_id
+        LEFT JOIN t_bi_area t5 on t1.area_code = t5.area_code
+        WHERE
+        t1.id = #{objectId}
+    </select>
+
+    <select id="queryRestDetail" resultType="com.moulh.pg.busi.vo.RestObjectDetailVo">
+        SELECT
+        t1.id,
+        t1.object_name,
+        t1.object_short_desc,
+        t1.lat,
+        t1.lng,
+        t1.tel,
+        t3.per_of_good,
+        t4.comment_count,
+        t1.create_time,
+        t5.area_name
+        FROM
+        t_b_object t1
+        LEFT JOIN t_b_object_detail t3 ON t1.id = t3.object_id
+        LEFT JOIN (select count(1) as comment_count, object_id from t_b_comment GROUP BY object_id) t4 on t1.id = t4.object_id
+        LEFT JOIN t_bi_area t5 on t1.area_code = t5.area_code
+        WHERE
+        t1.id = #{objectId}
+    </select>
+    <select id="queryObjectDetail" resultType="com.moulh.pg.busi.vo.ObjectVo">
+        SELECT
+        t1.id,
+        t1.object_name,
+        t1.object_type,
+        t1.object_short_desc,
+        t1.lat,
+        t1.lng,
+        t1.tel,
+        t3.per_of_good,
+        t4.comment_count,
+        t1.create_time,
+        t5.area_name,
+        t6.url as object_main_image_url
+        FROM
+        t_b_object t1
+        LEFT JOIN t_b_object_detail t3 ON t1.id = t3.object_id
+        LEFT JOIN (select count(1) as comment_count, object_id from t_b_comment GROUP BY object_id) t4 on t1.id = t4.object_id
+        LEFT JOIN t_bi_area t5 on t1.area_code = t5.area_code
+        left join t_bi_images t6 on t1.object_main_imageid  = t6.id
+        WHERE
+        t1.id = #{objectId}
+    </select>
+
+    <select id="queryObjectList" resultMap="ObjectListResultMap">
+        SELECT
+        t1.id,
+        t1.object_type,
+        t1.object_name,
+        t1.object_short_desc,
+        t1.lat,
+        t1.lng,
+        t1.create_time,
+        t2.area_name
+        FROM
+        t_b_object t1
+        LEFT JOIN t_bi_area t2 on t1.area_code = t2.area_code
+        <where>
+            <if test="searchMap.objectType != null and searchMap.objectType != ''">
+                and t.object_type =#{searchMap.objectType}
+            </if>
+            <if test="searchMap.objectName != null and searchMap.objectName != ''">
+                and t.object_name =#{searchMap.objectName}
+            </if>
+        </where>
+        ORDER BY
+        t1.create_time DESC
+    </select>
+</mapper>

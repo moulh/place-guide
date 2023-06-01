@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: place-guide
+  profiles:
+    active: dev
+  messages:
+    basename: i18n.messages
+    encoding: UTF-8
+  mvc:
+      locale: zh_CN
+  http:
+    encoding:
+      force:  true
+      charset: UTF-8
+      enabled: true
+server:
+  servlet:
+      context-path: /
+  port: 8081

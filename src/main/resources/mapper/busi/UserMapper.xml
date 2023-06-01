@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moulh.pg.busi.mapper.UserMapper">
+    <select id="findByUsername" resultType="com.moulh.pg.core.dto.SysUser" parameterType="string">
+        select * from t_si_user tsu where tsu.user_name = #{username}
+    </select>
+</mapper>

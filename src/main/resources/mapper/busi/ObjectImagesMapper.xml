@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moulh.pg.busi.mapper.ObjectImagesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moulh.pg.busi.entity.ObjectImages">
+        <id column="object_id" property="objectId" />
+        <result column="images_id" property="imagesId" />
+        <result column="images_title" property="imagesTitle" />
+        <result column="images_desc" property="imagesDesc" />
+        <result column="images_type" property="imagesType" />
+    </resultMap>
+
+    <select id="queryImagesMsgByObjectId" resultType="com.moulh.pg.busi.vo.ObjectImagesVo">
+        select t1.*, t2.url as image_url
+        from t_b_object_images t1
+        left join t_bi_images t2 on t1.images_id  = t2.id
+        where t1.object_id = #{objectId} and t1.images_type = 2
+    </select>
+
+</mapper>

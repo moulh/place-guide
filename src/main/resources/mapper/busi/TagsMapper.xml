@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moulh.pg.busi.mapper.TagsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.moulh.pg.busi.entity.Tags">
+        <id column="id" property="id" />
+        <result column="object_id" property="objectId" />
+        <result column="tags_content" property="tagsContent" />
+        <result column="tags_count" property="tagsCount" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="queryTagsByObjectType" resultType="com.moulh.pg.busi.vo.TagsVo" parameterType="integer">
+        select t1.* from t_bi_tags t1
+        LEFT JOIN t_b_object t2 on t1.object_id = t2.id
+        <where>
+            <if test="objectType != null and objectType != ''">
+                and t2.object_type = #{objectType}
+            </if>
+            <if test="objectId != null and objectId != ''">
+                and t1.object_id = #{objectId}
+            </if>
+        </where>
+        order by tags_count desc limit #{quantity}
+    </select>
+
+    <update id="updateCount" parameterType="integer">
+        update t_bi_tags set tags_count = tags_count + 1 where id  = #{tagId}
+    </update>
+
+</mapper>
