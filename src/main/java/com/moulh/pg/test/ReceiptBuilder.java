@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * @ClassName : ReceiptBuilder
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-10-25 11:08
  * @Version : V1.0
  * @Description :

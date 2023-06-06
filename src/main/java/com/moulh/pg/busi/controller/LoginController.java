@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName : LoginController
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-11 11:56
  * @Version : V1.0
  * @Description : 登录登出接口

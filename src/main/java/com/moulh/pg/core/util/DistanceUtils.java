@@ -2,7 +2,7 @@ package com.moulh.pg.core.util;
 
 /**
  * @ClassName : DistanceUtils
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 17:23
  * @Version : V1.0
  * @Description : 坐标距离

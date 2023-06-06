@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * @ClassName : JWTUtil
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2022-06-07 10:18
  * @Version : V1.0
  * @Description :

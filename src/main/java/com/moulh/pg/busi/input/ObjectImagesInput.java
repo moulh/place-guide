@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @ClassName : ObjectImagesInput
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-13 17:12
  * @Version : V1.0
  * @Description : 景点/住宿/餐饮图片信息

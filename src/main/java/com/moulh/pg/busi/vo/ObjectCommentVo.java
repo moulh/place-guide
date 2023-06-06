@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 /**
  * @ClassName : ObjectCommentVo
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 11:47
  * @Version : V1.0
  * @Description : 住宿/景点/餐饮评论信息

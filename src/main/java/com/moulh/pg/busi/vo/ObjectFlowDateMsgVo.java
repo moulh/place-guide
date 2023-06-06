@@ -8,7 +8,7 @@ import lombok.ToString;
 
 /**
  * @ClassName : ObjectFlowDateMsgVo
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-26 14:19
  * @Version : V1.0
  * @Description :

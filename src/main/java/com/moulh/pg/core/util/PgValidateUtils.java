@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @ClassName : PgValidateUtils
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 14:20
  * @Version : V1.0
  * @Description :

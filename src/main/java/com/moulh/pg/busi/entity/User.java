@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * @ClassName : User
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-22 15:32
  * @Version : V1.0
  * @Description :

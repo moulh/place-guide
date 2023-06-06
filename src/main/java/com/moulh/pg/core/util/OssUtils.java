@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * @ClassName : OssUtils
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 15:24
  * @Version : V1.0
  * @Description :

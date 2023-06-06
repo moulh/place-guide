@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @ClassName : Receipt
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-10-25 10:59
  * @Version : V1.0
  * @Description :

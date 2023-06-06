@@ -1,6 +1,5 @@
 package com.moulh.pg.busi.vo;
 
-import com.moulh.pg.busi.input.ObjectImagesInput;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -12,7 +11,7 @@ import java.util.List;
 
 /**
  * @ClassName : ObjectInput
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-13 16:57
  * @Version : V1.0
  * @Description : 景点/住宿/餐饮基础信息展示参数

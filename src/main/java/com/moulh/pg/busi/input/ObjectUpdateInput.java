@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * @ClassName : ObjectInput
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-13 16:57
  * @Version : V1.0
  * @Description : 景点/住宿/餐饮基础信息修改参数

@@ -2,7 +2,7 @@ package com.moulh.pg.core.exception;
 
 /**
  * @ClassName : BusinessException
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-19 11:24
  * @Version : V1.0
  * @Description :

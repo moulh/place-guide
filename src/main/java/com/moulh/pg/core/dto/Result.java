@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * @ClassName : Result
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-11 11:59
  * @Version : V1.0
  * @Description :

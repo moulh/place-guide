@@ -2,7 +2,7 @@ package com.moulh.pg.core.constant;
 
 /**
  * @ClassName : BasicConstant
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2022-06-07 11:25
  * @Version : V1.0
  * @Description :

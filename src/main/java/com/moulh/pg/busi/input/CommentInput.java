@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 /**
  * @ClassName : CommentInput
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 11:55
  * @Version : V1.0
  * @Description : 游客新增评论参数

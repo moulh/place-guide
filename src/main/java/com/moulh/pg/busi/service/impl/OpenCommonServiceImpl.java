@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * @ClassName : OpenCommonServiceImpl
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 18:31
  * @Version : V1.0
  * @Description : 对外公关接口实现类

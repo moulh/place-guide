@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 /**
  * @ClassName : CommentVo
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-19 15:21
  * @Version : V1.0
  * @Description : 评论展示参数

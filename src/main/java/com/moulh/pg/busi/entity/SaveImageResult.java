@@ -7,7 +7,7 @@ import lombok.ToString;
 
 /**
  * @ClassName : SaveImageResult
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-08-02 10:10
  * @Version : V1.0
  * @Description :

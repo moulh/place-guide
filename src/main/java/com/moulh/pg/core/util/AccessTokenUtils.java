@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName : AccessTokenUtils
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2022-06-07 11:21
  * @Version : V1.0
  * @Description :

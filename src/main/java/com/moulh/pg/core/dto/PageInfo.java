@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @ClassName : PageInfo
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-11 18:14
  * @Version : V1.0
  * @Description :

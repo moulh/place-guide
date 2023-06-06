@@ -8,7 +8,7 @@ import lombok.ToString;
 
 /**
  * @ClassName : TagsInput
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 11:59
  * @Version : V1.0
  * @Description : 标签新增参数

@@ -2,7 +2,7 @@ package com.moulh.pg.test;
 
 /**
  * @ClassName : Mt8104ReceiptHandleStrategy
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-10-25 11:05
  * @Version : V1.0
  * @Description :

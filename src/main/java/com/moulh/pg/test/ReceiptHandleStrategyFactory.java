@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @ClassName : ReceiptHandleStrategyFactory
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-10-25 11:02
  * @Version : V1.0
  * @Description :

@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @ClassName : SysUser
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-09 16:17
  * @Version : V1.0
  * @Description :

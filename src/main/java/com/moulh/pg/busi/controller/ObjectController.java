@@ -29,7 +29,7 @@ import java.util.Map;
 
 /**
  * @ClassName : ObjectController
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-13 16:32
  * @Version : V1.0
  * @Description : 景点/住宿/餐饮信息相关接口

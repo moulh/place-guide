@@ -1,8 +1,5 @@
 package com.moulh.pg.core.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.moulh.pg.busi.entity.User;
-import com.moulh.pg.busi.input.UserUpdatePwdInput;
 import com.moulh.pg.busi.mapper.UserMapper;
 import com.moulh.pg.core.constant.BasicConstant;
 import com.moulh.pg.core.dto.SysUser;
@@ -11,17 +8,14 @@ import com.moulh.pg.core.exception.BusinessException;
 import com.moulh.pg.core.util.AccessTokenUtils;
 import com.moulh.pg.core.util.JWTUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.omg.CORBA.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Objects;
-import java.util.UUID;
 
 /**
  * @ClassName : LoginService
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-11 11:18
  * @Version : V1.0
  * @Description :

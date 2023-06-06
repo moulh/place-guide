@@ -18,7 +18,7 @@ import java.io.FileNotFoundException;
 
 /**
  * @ClassName : TagsVo
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 14:24
  * @Version : V1.0
  * @Description : 标签展示参数

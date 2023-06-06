@@ -8,7 +8,7 @@ import lombok.ToString;
 
 /**
  * @ClassName : UserUpdatePwdInput
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-22 15:28
  * @Version : V1.0
  * @Description :

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName : CommonService
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-15 17:35
  * @Version : V1.0
  * @Description :

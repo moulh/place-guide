@@ -8,7 +8,7 @@ import lombok.ToString;
 
 /**
  * @ClassName : AreaVo
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-08-10 14:06
  * @Version : V1.0
  * @Description : 城市信息

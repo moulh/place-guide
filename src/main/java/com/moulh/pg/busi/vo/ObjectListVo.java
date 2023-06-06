@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 /**
  * @ClassName : ObjectListVo
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-15 17:26
  * @Version : V1.0
  * @Description : 景点/住宿/餐饮列表展示参数

@@ -1,7 +1,7 @@
 package com.moulh.pg.busi.constant;
 
 /**
- * @author : moulh@paxsz.com
+ * @author : moulh
  * @time : 2020/6/12
  * @description : 基础信息字段
  */

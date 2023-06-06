@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * @ClassName : UserTokenDTO
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2022-06-07 10:39
  * @Version : V1.0
  * @Description : 用户token信息对象

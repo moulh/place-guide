@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * @ClassName : SpotObjectListVo
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-11 18:16
  * @Version : V1.0
  * @Description : 景点列表参数

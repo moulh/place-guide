@@ -30,7 +30,7 @@ import java.util.Map;
 
 /**
  * @ClassName : OpenCommonController
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 11:45
  * @Version : V1.0
  * @Description :

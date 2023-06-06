@@ -6,7 +6,7 @@ import com.moulh.pg.core.dto.SysUser;
 
 /**
  * @ClassName : UserMapper
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-09 16:20
  * @Version : V1.0
  * @Description :

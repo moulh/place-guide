@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * @ClassName : OpenCommonService
- * @Author : moulh@paxsz.com
+ * @Author : moulh
  * @Date : 2021-07-12 18:30
  * @Version : V1.0
  * @Description : 对外公共接口
