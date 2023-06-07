@@ -1,22 +1,6 @@
 package com.moulh.pg.core.config;
-/*
- * ============================================================================
- * = COPYRIGHT
- *               PAX TECHNOLOGY, Inc. PROPRIETARY INFORMATION
- *   This software is supplied under the terms of a license agreement or
- *   nondisclosure agreement with PAX  Technology, Inc. and may not be copied
- *   or disclosed except in accordance with the terms in that agreement.
- *      Copyright (C) 2016-2020 PAX Technology, Inc. All rights reserved.
- * Description:
- *
- * Revision History:
- * Date	                 Author	                Action
- * 2020-01-06 11:25	     yyyty
- * ============================================================================
- */
 
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
